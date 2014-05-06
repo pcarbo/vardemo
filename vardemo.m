@@ -142,7 +142,7 @@ plot([1 length(Ivar)],[Ilap Ilap],'LineWidth',2,...
      'Color',rgb('darkorange'));
 plot(1:i,Ivar,'-','LineWidth',2,'Color',rgb('firebrick'));
 hold off
-set(gca,'XLim',[1 length(Ivar)]);
+set(gca,'XLim',[1 length(Ivar)],'XTick',1:length(Ivar));
 set(gca,'FontSize',10,'FontName','fixed');
 xlabel('iteration');
 ylabel('marginal log-likelihood');

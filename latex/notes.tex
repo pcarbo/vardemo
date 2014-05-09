@@ -231,7 +231,7 @@ a lower bound on the log-likelihood $\log p(y \,|\, x, \beta)$, which
 I denote by $L(\beta; \theta)$:
 \begin{align*}
 L(\beta; \theta) &= 
-(y-1)^Tx\beta + \sum_{i=1}^n \log\sigma(\theta_i) 
+(y-1)^T\logodds(i) + \sum_{i=1}^n \log\sigma(\theta_i) 
 + \half(\logodds(i) - \theta_i) 
 - \smfrac{u_i}{2}(\logodds(i)^2 - \theta_i^2).
 \end{align*}
@@ -265,12 +265,12 @@ lower bound is as tight as possible? To resolve the first question,
 suppose that the prior is normal with zero mean and variance
 $\sigma_0^2$. Then $p(\beta) \, e^{L(\beta; \theta)}$ is, up to a
 constant of proportionality, multivariate normal with mean $\mu =
-\Sigma X^T(y - \half)$ and covariance $\Sigma = (\Sigma_0^{-1} +
-X^TUX)^{-1}$. In this special case, the expression for the lower bound
+\sigma^2 x^T(y - \half)$ and variance $\sigma^2 = (1/\sigma_0^2 +
+x^TUx)^{-1}$. In this special case, the expression for the lower bound
 works out to be
 \begin{align*}
-I \geq |\Sigma_0^{-1}\Sigma|^{1/2} 
-\exp\Big\{ \half \mu^T\Sigma^{-1}\mu + 
+I \geq \sigma/\sigma_0
+\exp\Big\{ \half \mu^2/\sigma^2 + 
 {\textstyle \sum_{i=1}^n \log\sigma(\theta_i) + 
 \smfrac{\theta_i}{2}(u_i\theta_i - 1)}\Big\}.
 \end{align*}
@@ -286,7 +286,7 @@ To derive the M-step, first take the partial derivatives of the
 expected log-likelihood with respect to the variational parameters:
 \begin{align*}
 \frac{\partial E\lb L(\beta;\theta)\rb}{\partial \theta_i} &=
-\frac{u_i'}{2}(\theta_i^2 - (x_i^T\mu)^2 - x_i^T \Sigma x_i),
+\frac{u_i'}{2}(\theta_i^2 - (x_i\mu)^2 - x_i^2\sigma^2),
 \end{align*}
 where $\mu$ is the posterior mean and $\Sigma$ is the posterior
 covariance computed in the E-step. The usual procedure is to set the
@@ -302,7 +302,6 @@ fixed point:
 \end{align*}
 This EM algorithm for adjusting the variational parameters $\theta$
 has an intuitive appeal: we are adjusting the lower bound so that the
-approximation is tighest where there is most support for the additive
-effects $\beta$.
+approximation is tighest where there is most support for $\beta$.
   
 \end{document}

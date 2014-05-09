@@ -11,6 +11,4 @@ integrals.
 [vardemo.m](vardemo.m) is the MATLAB script that runs the main example.
 
 I've also provided the mathematical derivations of Laplace's method
-and the variational method; see [notes.pdf](notes.pdf) For
-a detailed derivation of the variational lower bound, see
-[bishop.pdf](bishop.pdf).
+and the variational method; see [notes.pdf](notes.pdf).
